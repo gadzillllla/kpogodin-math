@@ -1,0 +1,22 @@
+.root {
+  display: flex;
+  gap: 10px;
+}
+
+.char {
+  width: 16vw;
+  height: 20vw;
+  border: 1px solid gray;
+  font-size: 15vw;
+  color: #000000bf;
+  display: flex;
+  justify-content: center;
+}
+
+.error .char {
+  color: #c00202;
+}
+
+.success .char {
+  color: #148414;
+}
