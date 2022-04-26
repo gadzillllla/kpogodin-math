@@ -1,7 +1,8 @@
 .root {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 100px;
+  align-items: center;
 }
 
 .exercise {
