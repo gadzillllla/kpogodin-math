@@ -1,6 +1,12 @@
 .root {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.exercise {
+ display: flex;
+ gap:5px;
 }
 
 .char {

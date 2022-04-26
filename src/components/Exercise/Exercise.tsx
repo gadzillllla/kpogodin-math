@@ -49,11 +49,14 @@ function Exercise(props: IExercisePropsType) {
 
   return (
     <div className={cn(s.root, s[status])}>
-      {exercise.task.map((char) => (
-        <span className={s.char}>{char}</span>
-      ))}
-      <span className={s.char}>=</span>
-      <span className={s.char}>{userAnswer}</span>
+      <p>Пример №{step}</p>
+      <div className={cn(s.exercise, s[status])}>
+        {exercise.task.map((char) => (
+          <span className={s.char}>{char}</span>
+        ))}
+        <span className={s.char}>=</span>
+        <span className={s.char}>{userAnswer}</span>
+      </div>
       <AnswerButtons onSelect={setUserAnswer} />
     </div>
   );

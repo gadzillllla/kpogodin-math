@@ -8,7 +8,6 @@ function App() {
 
   return (
     <div className={s.root}>
-      <p>Пример №{step}</p>
       <Exercise onNext={() => setStep(step + 1)} step={step} />
     </div>
   );
