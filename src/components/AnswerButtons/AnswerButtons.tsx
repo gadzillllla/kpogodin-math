@@ -1,3 +1,4 @@
+import Button from 'components/Button';
 import React from 'react';
 
 import s from './AnswerButtons.module.css';
@@ -11,18 +12,16 @@ export interface IAnswerButtonsPropsType {
 
 const AnswerButtons = (props: IAnswerButtonsPropsType) => {
   const { onSelect } = props;
-  console.log('asdasd');
 
   return (
     <div className={s.root}>
       {arrayFromButtonsCount.map((item, index) => {
         const value = index + 1;
-        console.log(value);
 
         return (
-          <button className={s.button} key={value} onClick={() => onSelect(value)}>
+          <Button key={value} onClick={() => onSelect(value)}>
             {value}
-          </button>
+          </Button>
         );
       })}
     </div>

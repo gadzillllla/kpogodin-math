@@ -17,7 +17,6 @@ const alias = srcFolders.reduce((acc, folderName) => {
   return acc;
 }, {});
 
-console.log(alias);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,6 +27,10 @@ export default defineConfig({
   css: {
     modules: {
       localsConvention: 'dashesOnly',
+      generateScopedName: (name: string, filePath: string, css: string): string => {
+        const [, fileName] = filePath.split('/').reverse();
+        return `${fileName}_${name}`
+      },
     },
   },
 });
