@@ -1,6 +1,9 @@
 .root {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 5px;
+  grid-gap: 15px;
+  grid-gap: 0;
+  gap: 8px;
+  padding: 0 12px;
   width: 100%;
 }

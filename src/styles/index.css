@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: Rubik, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--body-background);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+small {
+  color: var(--electric-violet)
+}
+
+.success {
+  color: var(--success);
+}
+
+.error {
+  color: var(--error);
+}
+
+h1 {
+  line-height: 0;
+  font-size: 36px;
+  color: #fff;
+}

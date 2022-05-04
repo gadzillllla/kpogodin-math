@@ -1,29 +1,46 @@
 .root {
   display: flex;
-  flex-direction: column;
-  gap: 100px;
+  flex-direction: column; 
+  justify-content: space-between;
+  height: 85%;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  height: 60%;
+  width: 100%;
 }
 
 .exercise {
- display: flex;
- gap:5px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 12px;
+  gap: 12px;
+  width: 75%;
 }
 
-.char {
-  width: 16vw;
-  height: 20vw;
-  border: 1px solid gray;
-  font-size: 15vw;
-  color: #000000bf;
+.buttons {
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
+.char {
+  font-size: 15vw;
+  font-weight: 700;
+  color: var(--body-background);
+  display: flex;
+  justify-content: center;
+  text-shadow: 1px 2px 0 #fff;
+
+}
+
 .error .char {
-  color: #c00202;
+  color: var(--error-dark);
 }
 
 .success .char {
-  color: #148414;
+  color: var(--success-dark);
 }

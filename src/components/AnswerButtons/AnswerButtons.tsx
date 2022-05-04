@@ -19,7 +19,7 @@ const AnswerButtons = (props: IAnswerButtonsPropsType) => {
         const value = index + 1;
 
         return (
-          <Button key={value} onClick={() => onSelect(value)}>
+          <Button className={s.button} key={value} onClick={() => onSelect(value)}>
             {value}
           </Button>
         );

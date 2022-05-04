@@ -1,9 +1,30 @@
 .root {
-  width: 100vw;
-  height: 100vh;
-  background: #acc2c6;
   display: flex;
-  gap: 150px;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  height: 85%;
+  max-width: 600px;
+  width: 85%;
+  background-color: var(--game-background);
+  border-radius: 30px;
+  border: 7px solid var(--game-background-dark);
+  box-shadow: var(--shadow);
+  padding-top: 25px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.title {
+  color: var(--game-background);
+  text-shadow: 2px 2px 0 #710432;
 }

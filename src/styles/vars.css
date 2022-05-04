@@ -1,0 +1,41 @@
+:root {
+    /* имена с https://chir.ag/projects/name-that-color/ =) */
+    --scarlet-gum: #38166C;
+    --daizy-bush: #5f289a;
+    --jacarta: #342365;
+    --haiti: #150F37;
+    --electric-violet: #9435FE;
+    --caribbean-green: #00eb9f;
+    --caribbean-green-dark: #02c7b1;
+    --west-side: #fe8e09;
+    --amber: #f9bf07;
+    --rose: #ed027e;
+    --torch-red: #fb1156;
+    --salem: #0a9d2b;
+    --malachite: #07f144;
+    --white: #f8fef4;
+    --max-desktop-width: 1280px;
+    --content-padding: 25px;
+    --header-height: 100px;
+
+    /* //  */
+    --dark-red:  #b91840;
+    --body-background: #6daba0;
+    --game-background: #e9e2b3;
+    --game-background-dark: #b8b388;
+    --shadow: 2px 5px 5px #5f5f5f;
+    --header-color: #ec4b74;
+    --header-border: var(--dark-red);
+    --button-light: #fedf11;
+    --button-default: #f4a117;
+    --success-light: #caf015;
+    --success-dark: #73df0a;
+    --success-text: #2a4e0f;
+    --error-light: #fe7124;
+    --error-dark: #ec421b;
+    --main-color-light: #12bde4;
+    --main-color-dark: #402259;
+    --disabled-light: #f9f1d9;
+    --disabled-dark: #c6d5d5;
+    --disabled-text: #565656;
+}

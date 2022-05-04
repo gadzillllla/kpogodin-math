@@ -1,7 +1,9 @@
 import cn from 'classnames';
 import AnswerButtons from 'components/AnswerButtons';
 import React, { useEffect, useMemo, useState } from 'react';
-import ExerciseGenerator, { OperatorsEnum } from 'servises/exerciseGenerator';
+import { useSelector } from 'react-redux';
+import ExerciseGenerator from 'servises/exerciseGenerator';
+import { RootState } from 'state/store';
 import { delay } from 'utils/delay';
 
 import s from './Exercise.module.css';
@@ -13,13 +15,15 @@ enum StatusEnum {
 }
 
 export interface IExercisePropsType {
-  onNext: () => void;
-  step: number;
+  onAnswer: (isCorrect: boolean) => void;
 }
 
 function Exercise(props: IExercisePropsType) {
-  const { onNext, step } = props;
-  const exercise = useMemo(() => new ExerciseGenerator(OperatorsEnum.plus, 10).generateExercise(), [step]);
+  const { onAnswer } = props;
+
+  const step = useSelector((state: RootState) => state.game.step);
+  const operators = useSelector((state: RootState) => state.game.operators);
+  const exercise = useMemo(() => new ExerciseGenerator(operators, 10).generateExercise(), [step]);
   const [userAnswer, setUserAnswer] = useState<number | null>(null);
   const [status, setStatus] = useState<StatusEnum>(StatusEnum.initial);
 
@@ -29,35 +33,40 @@ function Exercise(props: IExercisePropsType) {
       setStatus(StatusEnum.initial);
     };
 
-    const onAnswer = async () => {
+    const checkAnswer = async () => {
+      await delay(500);
       if (exercise.answer === userAnswer) {
         setStatus(StatusEnum.success);
         await delay(2000);
         resetState();
-        onNext();
+        onAnswer(true);
       } else if (exercise.answer !== userAnswer) {
         setStatus(StatusEnum.error);
         await delay(2000);
         resetState();
+        onAnswer(false);
       }
     };
 
     if (userAnswer) {
-      onAnswer();
+      checkAnswer();
     }
-  });
+  }, [userAnswer]);
 
   return (
     <div className={cn(s.root, s[status])}>
-      <p>Пример №{step}</p>
-      <div className={cn(s.exercise, s[status])}>
-        {exercise.task.map((char) => (
-          <span className={s.char}>{char}</span>
-        ))}
-        <span className={s.char}>=</span>
-        <span className={s.char}>{userAnswer}</span>
+      <div className={s.top}>
+        <div className={cn(s.exercise, s[status])}>
+          <span className={s.char}>{exercise.a}</span>
+          <span className={s.char}>{exercise.operator}</span>
+          <span className={s.char}>{exercise.b}</span>
+          <span className={s.char}>=</span>
+          <span className={s.char}>{userAnswer}</span>
+        </div>
       </div>
-      <AnswerButtons onSelect={setUserAnswer} />
+      <div className={s.buttons}>
+        <AnswerButtons onSelect={setUserAnswer} />
+      </div>
     </div>
   );
 }
