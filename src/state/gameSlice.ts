@@ -11,7 +11,7 @@ export interface IGameState {
 
 const initialState: IGameState = {
   step: 1,
-  limit: 3,
+  limit: 10,
   isStarted: false,
   operators: [OperatorsEnum.plus, OperatorsEnum.minus],
   statistic: [0, 0],
