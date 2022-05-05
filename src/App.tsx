@@ -35,8 +35,8 @@ function App() {
   };
 
   return (
-    <div className={s.root}>
-      <div className={s.container}>
+    <div style={{ height: `${document.documentElement.clientHeight}px` }} className={s.root}>
+      <div style={{ height: `${document.documentElement.clientHeight - 100}px` }} className={s.container}>
         <Header title={getTitle()} />
         {isStartScreenVisible && <Settings />}
         {isInGrogress && <Exercise onAnswer={onAnswer} />}

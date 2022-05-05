@@ -1,13 +1,13 @@
 .root {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  height: 90vh;
+  align-items: center;
   width: 100vw;
+  background: var(--body-background);
 }
 
 .container {
-  height: 85%;
+  height: 85vh;
   max-width: 600px;
   width: 85%;
   background-color: var(--game-background);
