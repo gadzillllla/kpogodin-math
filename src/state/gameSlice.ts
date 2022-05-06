@@ -4,6 +4,7 @@ import { OperatorsEnum } from 'servises/exerciseGenerator';
 export interface IGameState {
   step: number;
   limit: number;
+  difficulty: number;
   isStarted: boolean;
   operators: OperatorsEnum[];
   statistic: [number, number];
@@ -12,6 +13,7 @@ export interface IGameState {
 const initialState: IGameState = {
   step: 1,
   limit: 10,
+  difficulty: 5,
   isStarted: false,
   operators: [OperatorsEnum.plus, OperatorsEnum.minus],
   statistic: [0, 0],
@@ -30,6 +32,12 @@ export const gameSlice = createSlice({
     selectOperators: (state, action: PayloadAction<OperatorsEnum[]>) => {
       state.operators = action.payload;
     },
+    setLimit: (state, action: PayloadAction<number>) => {
+      state.limit = action.payload;
+    },
+    setDifficulty: (state, action: PayloadAction<number>) => {
+      state.difficulty = action.payload;
+    },
     incrementSuccessStat: (state) => {
       const [success, errors] = state.statistic;
       state.statistic = [success + 1, errors];
@@ -46,7 +54,15 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { incrementStep, startGame, selectOperators, incrementSuccessStat, incrementErrorStat, restart } =
-  gameSlice.actions;
+export const {
+  incrementStep,
+  startGame,
+  selectOperators,
+  incrementSuccessStat,
+  incrementErrorStat,
+  restart,
+  setLimit,
+  setDifficulty,
+} = gameSlice.actions;
 
 export default gameSlice.reducer;

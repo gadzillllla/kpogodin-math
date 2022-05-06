@@ -8,10 +8,11 @@ const arrayFromButtonsCount = Array.from(new Array(BUTTONS_COUNT), () => '');
 
 export interface IAnswerButtonsPropsType {
   onSelect: (value: number) => void;
+  disabled: boolean;
 }
 
 const AnswerButtons = (props: IAnswerButtonsPropsType) => {
-  const { onSelect } = props;
+  const { onSelect, disabled } = props;
 
   return (
     <div className={s.root}>
@@ -19,7 +20,15 @@ const AnswerButtons = (props: IAnswerButtonsPropsType) => {
         const value = index + 1;
 
         return (
-          <Button className={s.button} key={value} onClick={() => onSelect(value)}>
+          <Button
+            className={s.button}
+            key={value}
+            onClick={() => {
+              if (!disabled) {
+                onSelect(value);
+              }
+            }}
+          >
             {value}
           </Button>
         );

@@ -1,18 +1,24 @@
+import cn from 'classnames';
 import Button from 'components/Button';
 import { ButtonTypeEnum } from 'components/Button/Button';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { OperatorsEnum } from 'servises/exerciseGenerator';
-import { selectOperators, startGame } from 'state/gameSlice';
+import { selectOperators, setDifficulty, setLimit, startGame } from 'state/gameSlice';
 import { RootState } from 'state/store';
 
 import s from './Settings.module.css';
 
 export interface ISettingsPropsType {}
 
+const DIFFICULTY_VALUES = [3, 5, 7, 10];
+const LIMIT_VALUES = [5, 10, 20, 30];
+
 const Settings = () => {
   const dispatch = useDispatch();
   const operators = useSelector((state: RootState) => state.game.operators);
+  const difficulty = useSelector((state: RootState) => state.game.difficulty);
+  const limit = useSelector((state: RootState) => state.game.limit);
 
   const toggleOperator = (targetOperator: OperatorsEnum) => {
     const isSelectedOperatorNow = operators.includes(targetOperator);
@@ -23,24 +29,77 @@ const Settings = () => {
     }
   };
 
-  const getOperatorButtonType = (targetOperator: OperatorsEnum): ButtonTypeEnum => {
-    return operators.includes(targetOperator) ? ButtonTypeEnum.success : ButtonTypeEnum.inactive;
+  const isPlusActive = operators.includes(OperatorsEnum.plus);
+  const isMinusActive = operators.includes(OperatorsEnum.minus);
+
+  const plusBtn = (
+    <Button
+      className={s.button}
+      type={isPlusActive ? ButtonTypeEnum.success : ButtonTypeEnum.inactive}
+      onClick={() => toggleOperator(OperatorsEnum.plus)}
+    >
+      +
+    </Button>
+  );
+
+  const minusBtn = (
+    <Button
+      className={s.button}
+      type={isMinusActive ? ButtonTypeEnum.success : ButtonTypeEnum.inactive}
+      onClick={() => toggleOperator(OperatorsEnum.minus)}
+    >
+      –
+    </Button>
+  );
+
+  const renderToggle = (btn: ReactNode, isActive: boolean, message: string) => {
+    return (
+      <div className={s.toggle}>
+        {btn}
+        <span className={cn(s.description, { [s.active]: isActive })}>
+          {message} <br />
+          {isActive ? 'включены' : 'отключены'}
+        </span>
+      </div>
+    );
   };
+
+  const renderDifficultyButton = (value: number) => (
+    <Button
+      className={s.button}
+      type={difficulty === value ? ButtonTypeEnum.success : ButtonTypeEnum.inactive}
+      onClick={() => dispatch(setDifficulty(value))}
+    >
+      {value}
+    </Button>
+  );
+
+  const renderLimitButton = (value: number) => (
+    <Button
+      className={s.button}
+      type={limit === value ? ButtonTypeEnum.success : ButtonTypeEnum.inactive}
+      onClick={() => dispatch(setLimit(value))}
+    >
+      {value}
+    </Button>
+  );
 
   return (
     <div className={s.root}>
       <section className={s.section}>
-        <h1 className={s.title}>ОПЕРАТОРЫ</h1>
-        <div className={s.buttons}>
-          <Button type={getOperatorButtonType(OperatorsEnum.plus)} onClick={() => toggleOperator(OperatorsEnum.plus)}>
-            +
-          </Button>
-          <Button type={getOperatorButtonType(OperatorsEnum.minus)} onClick={() => toggleOperator(OperatorsEnum.minus)}>
-            –
-          </Button>
-        </div>
+        <span>Операторы</span>
+        {renderToggle(plusBtn, isPlusActive, 'Примеры на сложение')}
+        {renderToggle(minusBtn, isMinusActive, 'Примеры на вычитание')}
       </section>
       <section className={s.section}>
+        <span>Сложность (числа до {difficulty})</span>
+        <div className={s.row}>{DIFFICULTY_VALUES.map(renderDifficultyButton)}</div>
+      </section>
+      <section className={s.section}>
+        <span>Количество примеров</span>
+        <div className={s.row}>{LIMIT_VALUES.map(renderLimitButton)}</div>
+      </section>
+      <section className={s.centered}>
         <Button
           disabled={!operators.length}
           className={s.start}

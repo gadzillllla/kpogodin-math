@@ -22,8 +22,9 @@ function Exercise(props: IExercisePropsType) {
   const { onAnswer } = props;
 
   const step = useSelector((state: RootState) => state.game.step);
+  const difficulty = useSelector((state: RootState) => state.game.difficulty);
   const operators = useSelector((state: RootState) => state.game.operators);
-  const exercise = useMemo(() => new ExerciseGenerator(operators, 10).generateExercise(), [step]);
+  const exercise = useMemo(() => new ExerciseGenerator(operators, difficulty).generateExercise(), [step]);
   const [userAnswer, setUserAnswer] = useState<number | null>(null);
   const [status, setStatus] = useState<StatusEnum>(StatusEnum.initial);
 
@@ -65,7 +66,7 @@ function Exercise(props: IExercisePropsType) {
         </div>
       </div>
       <div className={s.buttons}>
-        <AnswerButtons onSelect={setUserAnswer} />
+        <AnswerButtons disabled={!!userAnswer} onSelect={setUserAnswer} />
       </div>
     </div>
   );

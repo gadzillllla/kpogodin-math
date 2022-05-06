@@ -22,3 +22,13 @@ h1 {
   font-size: 36px;
   color: #fff;
 }
+
+span {
+  text-transform: uppercase;
+  color: var(--disabled-text)
+}
+
+.active {
+  color: var(--success-text);
+  font-weight: 700;
+}

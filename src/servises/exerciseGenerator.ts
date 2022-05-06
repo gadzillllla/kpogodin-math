@@ -33,7 +33,7 @@ export default class ExerciseGenerator {
 
   generatePlusExercise(): IGeneratedExercise {
     const a = this.generateRandomNumberWithLimit();
-    const b = this.generateRandomNumberWithLimit(this.limit - 3);
+    const b = this.generateRandomNumberWithLimit();
     const answer = a + b;
     return {
       a,
