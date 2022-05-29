@@ -24,10 +24,10 @@
     --game-background: #e9e2b3;
     --game-background-dark: #b8b388;
     --shadow: 2px 5px 5px #5f5f5f;
-    --header-color: #ec4b74;
-    --header-border: var(--dark-red);
-    --button-light: #fedf11;
-    --button-default: #f4a117;
+    --error-background: #ec4b74;
+    --error-border: var(--dark-red);
+    --primary-light: #fedf11;
+    --primary: #f4a117;
     --success-light: #caf015;
     --success-dark: #73df0a;
     --success-text: #2a4e0f;
@@ -38,4 +38,5 @@
     --disabled-light: #f9f1d9;
     --disabled-dark: #c6d5d5;
     --disabled-text: #565656;
+    --main-dark: #52503c;
 }

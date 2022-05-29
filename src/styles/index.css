@@ -9,18 +9,9 @@ small {
   color: var(--electric-violet)
 }
 
-.success {
-  color: var(--success);
-}
-
-.error {
-  color: var(--error);
-}
-
 h1 {
   line-height: 0;
   font-size: 36px;
-  color: #fff;
 }
 
 span {
@@ -32,3 +23,38 @@ span {
   color: var(--success-text);
   font-weight: 700;
 }
+
+.default-wrapper {
+  background: var(--main-color-light);
+  color: var(--main-color-dark);
+  box-shadow: 0 7px 0 var(--main-color-dark);
+  text-shadow: 0 2px 0 var(--white);
+}
+
+.success-wrapper {
+  background: linear-gradient(180deg, var(--success-light) , var(--success-dark));
+  color: var(--success-text);
+  box-shadow: 0 5px 0 var(--success-text);
+  text-shadow: 0 2px 0 var(--white);
+}
+
+.error-wrapper {
+  background-color: var(--error-background);
+  box-shadow: 0 5px 0 var(--error-border);
+  color: var(--white);
+}
+
+.inactive-wrapper, button:disabled {
+  background: linear-gradient(180deg, var(--disabled-light) , var(--disabled-dark)) ;
+  color: var(--disabled-text) ;
+  box-shadow: 0 5px 0 var(--disabled-text) ;
+  text-shadow: 0 2px 0 var(--white) ;
+}
+
+.primary-wrapper {
+  background: linear-gradient(180deg, var(--primary-light) , var(--primary)) ;
+  color: var(--dark-red) ;
+  box-shadow: 0 5px 0 var(--dark-red) ;
+  text-shadow: 0 1px 0 var(--white) ;
+}
+

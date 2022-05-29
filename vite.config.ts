@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr'
 // @ts-ignore
 import { readdirSync, statSync } from 'fs';
 // @ts-ignore
@@ -23,7 +24,7 @@ export default defineConfig({
   resolve: {
     alias,
   },
-  plugins: [react()],
+  plugins: [react(), svgr()],
   css: {
     modules: {
       localsConvention: 'dashesOnly',

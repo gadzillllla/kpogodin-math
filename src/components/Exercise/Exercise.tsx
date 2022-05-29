@@ -1,9 +1,12 @@
 import cn from 'classnames';
 import AnswerButtons from 'components/AnswerButtons';
+import Header from 'components/Header';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import ExerciseGenerator from 'servises/exerciseGenerator';
+import { sounds } from 'services/audioService';
+import ExerciseGenerator from 'services/exerciseGenerator';
 import { RootState } from 'state/store';
+import { ElementTypeEnum } from 'types/enums';
 import { delay } from 'utils/delay';
 
 import s from './Exercise.module.css';
@@ -24,6 +27,7 @@ function Exercise(props: IExercisePropsType) {
   const step = useSelector((state: RootState) => state.game.step);
   const difficulty = useSelector((state: RootState) => state.game.difficulty);
   const operators = useSelector((state: RootState) => state.game.operators);
+  const limit = useSelector((state: RootState) => state.game.limit);
   const exercise = useMemo(() => new ExerciseGenerator(operators, difficulty).generateExercise(), [step]);
   const [userAnswer, setUserAnswer] = useState<number | null>(null);
   const [status, setStatus] = useState<StatusEnum>(StatusEnum.initial);
@@ -38,11 +42,13 @@ function Exercise(props: IExercisePropsType) {
       await delay(500);
       if (exercise.answer === userAnswer) {
         setStatus(StatusEnum.success);
+        sounds.success();
         await delay(2000);
         resetState();
         onAnswer(true);
       } else if (exercise.answer !== userAnswer) {
         setStatus(StatusEnum.error);
+        sounds.error();
         await delay(2000);
         resetState();
         onAnswer(false);
@@ -54,8 +60,19 @@ function Exercise(props: IExercisePropsType) {
     }
   }, [userAnswer]);
 
+  const statusToElemtntType = (): ElementTypeEnum => {
+    if (status === StatusEnum.success) return ElementTypeEnum.success;
+    if (status === StatusEnum.error) return ElementTypeEnum.error;
+    return ElementTypeEnum.primary;
+  };
+
   return (
     <div className={cn(s.root, s[status])}>
+      <Header type={statusToElemtntType()}>
+        <h1>
+          ПРИМЕР {step} / {limit}
+        </h1>
+      </Header>
       <div className={s.top}>
         <div className={cn(s.exercise, s[status])}>
           <span className={s.char}>{exercise.a}</span>
@@ -66,7 +83,7 @@ function Exercise(props: IExercisePropsType) {
         </div>
       </div>
       <div className={s.buttons}>
-        <AnswerButtons disabled={!!userAnswer} onSelect={setUserAnswer} />
+        <AnswerButtons type={statusToElemtntType()} disabled={!!userAnswer} onSelect={setUserAnswer} />
       </div>
     </div>
   );

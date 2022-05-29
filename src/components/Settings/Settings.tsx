@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import Button from 'components/Button';
-import { ButtonTypeEnum } from 'components/Button/Button';
+import Header from 'components/Header';
 import React, { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { OperatorsEnum } from 'servises/exerciseGenerator';
+import { OperatorsEnum } from 'services/exerciseGenerator';
 import { selectOperators, setDifficulty, setLimit, startGame } from 'state/gameSlice';
 import { RootState } from 'state/store';
+import { ElementTypeEnum } from 'types/enums';
 
 import s from './Settings.module.css';
 
@@ -35,7 +36,7 @@ const Settings = () => {
   const plusBtn = (
     <Button
       className={s.button}
-      type={isPlusActive ? ButtonTypeEnum.success : ButtonTypeEnum.inactive}
+      type={isPlusActive ? ElementTypeEnum.success : ElementTypeEnum.inactive}
       onClick={() => toggleOperator(OperatorsEnum.plus)}
     >
       +
@@ -45,7 +46,7 @@ const Settings = () => {
   const minusBtn = (
     <Button
       className={s.button}
-      type={isMinusActive ? ButtonTypeEnum.success : ButtonTypeEnum.inactive}
+      type={isMinusActive ? ElementTypeEnum.success : ElementTypeEnum.inactive}
       onClick={() => toggleOperator(OperatorsEnum.minus)}
     >
       –
@@ -67,7 +68,7 @@ const Settings = () => {
   const renderDifficultyButton = (value: number) => (
     <Button
       className={s.button}
-      type={difficulty === value ? ButtonTypeEnum.success : ButtonTypeEnum.inactive}
+      type={difficulty === value ? ElementTypeEnum.success : ElementTypeEnum.inactive}
       onClick={() => dispatch(setDifficulty(value))}
     >
       {value}
@@ -77,7 +78,7 @@ const Settings = () => {
   const renderLimitButton = (value: number) => (
     <Button
       className={s.button}
-      type={limit === value ? ButtonTypeEnum.success : ButtonTypeEnum.inactive}
+      type={limit === value ? ElementTypeEnum.success : ElementTypeEnum.inactive}
       onClick={() => dispatch(setLimit(value))}
     >
       {value}
@@ -85,31 +86,36 @@ const Settings = () => {
   );
 
   return (
-    <div className={s.root}>
-      <section className={s.section}>
-        <span>Операторы</span>
-        {renderToggle(plusBtn, isPlusActive, 'Примеры на сложение')}
-        {renderToggle(minusBtn, isMinusActive, 'Примеры на вычитание')}
-      </section>
-      <section className={s.section}>
-        <span>Сложность (числа до {difficulty})</span>
-        <div className={s.row}>{DIFFICULTY_VALUES.map(renderDifficultyButton)}</div>
-      </section>
-      <section className={s.section}>
-        <span>Количество примеров</span>
-        <div className={s.row}>{LIMIT_VALUES.map(renderLimitButton)}</div>
-      </section>
-      <section className={s.centered}>
-        <Button
-          disabled={!operators.length}
-          className={s.start}
-          type={ButtonTypeEnum.success}
-          onClick={() => dispatch(startGame())}
-        >
-          СТАРТ
-        </Button>
-      </section>
-    </div>
+    <>
+      <Header type={ElementTypeEnum.error}>
+        <h1>НАСТРОЙКИ</h1>
+      </Header>
+      <div className={s.root}>
+        <section className={s.section}>
+          <span>Операторы</span>
+          {renderToggle(plusBtn, isPlusActive, 'Примеры на сложение')}
+          {renderToggle(minusBtn, isMinusActive, 'Примеры на вычитание')}
+        </section>
+        <section className={s.section}>
+          <span>Сложность (числа до {difficulty})</span>
+          <div className={s.row}>{DIFFICULTY_VALUES.map(renderDifficultyButton)}</div>
+        </section>
+        <section className={s.section}>
+          <span>Количество примеров</span>
+          <div className={s.row}>{LIMIT_VALUES.map(renderLimitButton)}</div>
+        </section>
+        <section className={s.centered}>
+          <Button
+            disabled={!operators.length}
+            className={s.start}
+            type={ElementTypeEnum.success}
+            onClick={() => dispatch(startGame())}
+          >
+            СТАРТ
+          </Button>
+        </section>
+      </div>
+    </>
   );
 };
 

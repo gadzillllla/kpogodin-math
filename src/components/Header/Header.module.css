@@ -4,6 +4,5 @@
   justify-content: center;
   height: 75px;
   width: 100%;
-  background-color: var(--header-color);
-  border-bottom: 7px solid var(--header-border);
+  transition: all .2s ease;
 }

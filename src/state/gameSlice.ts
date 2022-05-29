@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { OperatorsEnum } from 'servises/exerciseGenerator';
+import { OperatorsEnum } from 'services/exerciseGenerator';
 
 export interface IGameState {
   step: number;

@@ -1,28 +1,30 @@
 import cn from 'classnames';
 import React from 'react';
+import { sounds } from 'services/audioService';
+import { ElementTypeEnum } from 'types/enums';
 
 import s from './Button.module.css';
-
-export enum ButtonTypeEnum {
-  success = 'success',
-  error = 'error',
-  inactive = 'inactive',
-  default = 'default',
-}
 
 export interface IButtonPropsType {
   onClick: () => void;
   children: React.ReactNode;
   className?: string;
-  type?: ButtonTypeEnum;
+  type?: ElementTypeEnum;
   disabled?: boolean;
 }
 
 const Button = (props: IButtonPropsType) => {
-  const { onClick, children, className, disabled = false, type = ButtonTypeEnum.default } = props;
+  const { onClick, children, className, disabled = false, type = ElementTypeEnum.default } = props;
 
   return (
-    <button disabled={disabled} className={cn(s.button, s[type], className)} onClick={onClick}>
+    <button
+      disabled={disabled}
+      className={cn(s.button, `${type}-wrapper`, className)}
+      onClick={() => {
+        sounds.blob();
+        onClick();
+      }}
+    >
       {children}
     </button>
   );

@@ -3,38 +3,21 @@
 }
 
 .button {
-  background: linear-gradient(180deg, var(--button-light) , var(--button-default));
-  color: var(--dark-red);
   border-radius: 8px;
   font-size: 40px;
   border: none;
-  box-shadow: 0 5px 0 var(--dark-red);
-  text-shadow: 0 2px 0 #fff;
   font-weight: 700;
   cursor: pointer;
   padding: 6px 0;
   font-family: Rubik, sans-serif;
-  transition: all .1s ease;
-}
-
-.success {
-  background: linear-gradient(180deg, var(--success-light) , var(--success-dark));
-  color: var(--success-text);
-  box-shadow: 0 5px 0 var(--success-text);
+  transition: all .2s ease;
 }
 
 .button:disabled {
   cursor: not-allowed;
 }
 
-.inactive, .button:disabled {
-  background: linear-gradient(180deg, var(--disabled-light) , var(--disabled-dark));
-  color: var(--disabled-text);
-  box-shadow: 0 5px 0 var(--disabled-text);
-}
-
 .button:not(:disabled):active {
   box-shadow: none;
   transform: translateY(5px);
 }
-

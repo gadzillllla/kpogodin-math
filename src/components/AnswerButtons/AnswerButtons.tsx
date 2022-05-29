@@ -1,5 +1,6 @@
 import Button from 'components/Button';
 import React from 'react';
+import { ElementTypeEnum } from 'types/enums';
 
 import s from './AnswerButtons.module.css';
 
@@ -9,10 +10,11 @@ const arrayFromButtonsCount = Array.from(new Array(BUTTONS_COUNT), () => '');
 export interface IAnswerButtonsPropsType {
   onSelect: (value: number) => void;
   disabled: boolean;
+  type?: ElementTypeEnum;
 }
 
 const AnswerButtons = (props: IAnswerButtonsPropsType) => {
-  const { onSelect, disabled } = props;
+  const { onSelect, disabled, type = ElementTypeEnum.default } = props;
 
   return (
     <div className={s.root}>
@@ -22,6 +24,7 @@ const AnswerButtons = (props: IAnswerButtonsPropsType) => {
         return (
           <Button
             className={s.button}
+            type={type}
             key={value}
             onClick={() => {
               if (!disabled) {

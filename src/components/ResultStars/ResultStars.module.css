@@ -1,0 +1,41 @@
+.root {
+  display: flex;
+  gap: 10px
+}
+
+.star-container {
+  position: relative;
+  
+}
+
+.empty-star {
+  color: var(--main-dark)
+}
+
+.star {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  z-index: 1;
+  color: var(--primary-light);
+  animation-duration: 0.4s;
+  animation-name: apperance;
+  animation-delay: var(--delay);
+  animation-fill-mode: forwards;
+  transform: scale(0);
+
+}
+
+@keyframes apperance {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(0.75) translateY(1%);
+  }
+
+  75% {
+    transform: scale(0.9);
+  }
+}

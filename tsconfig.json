@@ -19,7 +19,8 @@
   },
   "include": [
     "src",
-    "./jest-setup.ts"
+    "./jest-setup.ts",
+    ".src/types/svg.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
