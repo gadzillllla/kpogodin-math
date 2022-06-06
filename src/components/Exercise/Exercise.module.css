@@ -33,12 +33,29 @@
   display: flex;
   justify-content: center;
   text-shadow: 1px 2px 0 #fff;
+  animation-duration: 0.3s;
 }
 
 .error .char {
   color: var(--error-dark);
+  animation-name: pulse;
 }
 
 .success .char {
   color: var(--success-text);
+  animation-name: pulse;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

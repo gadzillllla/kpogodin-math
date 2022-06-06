@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 200px;
+  gap: 55px;
   height: 90%;
 }
 
@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 50px;
 }
 
 .buttons {
@@ -22,10 +23,17 @@
 
 .title {
   text-transform: uppercase;
-  color: var(--disabled-text)
+  color: var(--disabled-text);
+  margin: 0;
 }
 
 .restart {
   height: 100px;
   width: 250px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
 }

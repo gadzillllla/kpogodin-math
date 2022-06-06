@@ -14,6 +14,7 @@ const Result = () => {
   const dispatch = useDispatch();
   const [, errors] = useSelector((state: RootState) => state.game.statistic);
   const limit = useSelector((state: RootState) => state.game.limit);
+  const difficulty = useSelector((state: RootState) => state.game.difficulty);
 
   const getResult = (): IResultNumbers => {
     if (!errors) return 3;
@@ -24,11 +25,15 @@ const Result = () => {
     <>
       <Header type={ElementTypeEnum.success}>
         <h1>РЕЗУЛЬТАТ</h1>
-      </Header>{' '}
+      </Header>
       <div className={s.root}>
         <section className={s.section}>
           <ResultStars result={getResult()} />
-          <p className={s.title}>Всего ошибок: {errors}</p>
+          <div className={s.info}>
+            <p className={s.title}>Решено примеров: {limit}</p>
+            <p className={s.title}>Сложность: {difficulty}</p>
+            <p className={s.title}>Всего ошибок: {errors}</p>
+          </div>
         </section>
         <Button type={ElementTypeEnum.success} className={s.restart} onClick={() => dispatch(restart())}>
           ЗАНОВО

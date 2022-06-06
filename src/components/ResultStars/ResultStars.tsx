@@ -1,5 +1,6 @@
 import { ReactComponent as Star } from 'images/star.svg';
 import React, { CSSProperties } from 'react';
+import { repeatSound, sounds } from 'services/audioService';
 
 import s from './ResultStars.module.css';
 
@@ -12,6 +13,7 @@ export interface IResultStarsPropsType {
 const ResultStars = (props: IResultStarsPropsType) => {
   const { result } = props;
   const arrayForRenderEmptyStars = Array.from(new Array(3));
+  repeatSound(result, 300, sounds.blob);
 
   return (
     <div className={s.root}>
